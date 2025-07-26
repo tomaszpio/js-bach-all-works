@@ -87,12 +87,13 @@
       const ytText = await fetch('youtube.csv').then(res => res.text());
       const videoMap = {};
       ytText.split(/\r?\n/).forEach(line => {
-        const [url, title] = line.split(';');
-        if (url && title) {
+        const [title, id] = line.split(';');
+        if (title && id) {
           const match = title.match(/BWV\s*([0-9]+)/i);
           if (match) {
             const num = parseInt(match[1], 10);
             if (!videoMap[num]) {
+              const url = `https://youtu.be/${id.trim()}`;
               videoMap[num] = url;
             }
           }
