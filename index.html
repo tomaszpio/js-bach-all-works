@@ -49,46 +49,26 @@
   </table>
 
   <script>
-    // Przykladowy fragment JSON – zastąp to wczytaniem z pliku lub zmienną dynamiczną
-    const bachData = [
-      {
-        "BWV": "1",
-        "BC": "A173",
-        "Title": "Wie schön leuchtet der Morgenstern",
-        "Key": "F major",
-        "Date": "1725",
-        "Genre": "Sacred cantatas",
-        "Scoring": "For 3 voices, mixed chorus, orchestra",
-        "Notes": ""
-      },
-      {
-        "BWV": "2",
-        "BC": "A98",
-        "Title": "Ach Gott, vom Himmel sieh darein",
-        "Key": "G minor",
-        "Date": "1724",
-        "Genre": "Sacred cantatas",
-        "Scoring": "For 3 voices, mixed chorus, orchestra",
-        "Notes": ""
-      }
-      // Można wczytać więcej danych z pliku JSON przez fetch()
-    ];
-
-    const tbody = document.querySelector("#cantatasTable tbody");
-    bachData.forEach(row => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${row.BWV}</td>
-        <td>${row.BC}</td>
-        <td>${row.Title}</td>
-        <td>${row.Key}</td>
-        <td>${row.Date}</td>
-        <td>${row.Genre}</td>
-        <td>${row.Scoring}</td>
-        <td>${row.Notes}</td>
-      `;
-      tbody.appendChild(tr);
-    });
+    fetch('works.json')
+      .then(response => response.json())
+      .then(data => {
+        const tbody = document.querySelector('#cantatasTable tbody');
+        data.forEach(row => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${row.BWV}</td>
+            <td>${row.BC}</td>
+            <td>${row.Title}</td>
+            <td>${row.Key}</td>
+            <td>${row.Date}</td>
+            <td>${row.Genre}</td>
+            <td>${row.Forces}</td>
+            <td>${row.Notes}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      })
+      .catch(err => console.error('Error loading works.json', err));
   </script>
 </body>
 </html>
