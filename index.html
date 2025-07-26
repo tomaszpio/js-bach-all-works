@@ -17,6 +17,12 @@
       border-collapse: collapse;
       background: white;
     }
+    h2 {
+      cursor: pointer;
+    }
+    .collapsed {
+      display: none;
+    }
     th, td {
       padding: 8px 12px;
       border: 1px solid #ccc;
@@ -86,6 +92,10 @@
           container.appendChild(heading);
 
           const table = document.createElement('table');
+          table.classList.add('collapsed');
+          heading.addEventListener('click', () => {
+            table.classList.toggle('collapsed');
+          });
           const thead = document.createElement('thead');
           thead.innerHTML = `<tr><th>BWV</th><th>BC</th><th>Tytuł</th><th>Tonacja</th><th>Data</th><th>Gatunek</th><th>Obsada</th><th>Uwagi</th></tr>`;
           table.appendChild(thead);
