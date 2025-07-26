@@ -82,11 +82,24 @@
       { name: 'Utwory fragmentaryczne, zaginione, wątpliwe i fałszywe', prefix: 'Anh.' }
     ];
 
-    fetch('works.json')
-      .then(response => response.json())
-      .then(data => {
-        const container = document.getElementById('works');
-        categories.forEach(cat => {
+    async function loadData() {
+      const works = await fetch('works.json').then(res => res.json());
+      const ytText = await fetch('youtube.csv').then(res => res.text());
+      const videoMap = {};
+      ytText.split(/\r?\n/).forEach(line => {
+        const [url, title] = line.split(';');
+        if (url && title) {
+          const match = title.match(/BWV\s*([0-9]+)/i);
+          if (match) {
+            const num = parseInt(match[1], 10);
+            if (!videoMap[num]) {
+              videoMap[num] = url;
+            }
+          }
+        }
+      });
+      const container = document.getElementById('works');
+      categories.forEach(cat => {
           const heading = document.createElement('h2');
           heading.textContent = cat.name;
           container.appendChild(heading);
@@ -97,12 +110,12 @@
             table.classList.toggle('collapsed');
           });
           const thead = document.createElement('thead');
-          thead.innerHTML = `<tr><th>BWV</th><th>BC</th><th>Tytuł</th><th>Tonacja</th><th>Data</th><th>Gatunek</th><th>Obsada</th><th>Uwagi</th></tr>`;
+          thead.innerHTML = `<tr><th>BWV</th><th>BC</th><th>Tytuł</th><th>Tonacja</th><th>Data</th><th>Gatunek</th><th>Obsada</th><th>Uwagi</th><th>Video</th></tr>`;
           table.appendChild(thead);
           const tbody = document.createElement('tbody');
           table.appendChild(tbody);
 
-          data.filter(row => {
+          works.filter(row => {
             const bwv = row.BWV;
             if (cat.prefix) {
               return bwv.startsWith(cat.prefix);
@@ -111,6 +124,7 @@
             return !isNaN(num) && num >= cat.start && num <= cat.end;
           }).forEach(row => {
             const tr = document.createElement('tr');
+            const videoLink = videoMap[parseInt(row.BWV, 10)];
             tr.innerHTML = `
               <td>${row.BWV}</td>
               <td>${row.BC}</td>
@@ -120,14 +134,16 @@
               <td>${row.Genre}</td>
               <td>${row.Forces}</td>
               <td>${row.Notes}</td>
+              <td>${videoLink ? `<a href="${videoLink}" target="_blank">link</a>` : ''}</td>
             `;
             tbody.appendChild(tr);
           });
 
           container.appendChild(table);
         });
-      })
-      .catch(err => console.error('Błąd wczytywania works.json', err));
+      }
+
+      loadData().catch(err => console.error('Błąd wczytywania danych', err));
   </script>
 </body>
 </html>
