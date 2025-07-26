@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Dzieła Bacha – Kantaty</title>
+  <title>Dzieła Bacha – wszystkie utwory</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -31,41 +31,90 @@
   </style>
 </head>
 <body>
-  <h1>Kantaty Johanna Sebastiana Bacha</h1>
-  <table id="cantatasTable">
-    <thead>
-      <tr>
-        <th>BWV</th>
-        <th>BC</th>
-        <th>Tytuł</th>
-        <th>Tonacja</th>
-        <th>Data</th>
-        <th>Gatunek</th>
-        <th>Obsada</th>
-        <th>Uwagi</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+  <h1>Dzieła Johanna Sebastiana Bacha</h1>
+  <div id="works"></div>
 
   <script>
+    const categories = [
+      { name: 'Cantatas', start: 1, end: 224 },
+      { name: 'Motets', start: 225, end: 231 },
+      { name: 'Masses and Magnificats', start: 232, end: 243 },
+      { name: 'Passions and Oratorios', start: 244, end: 249 },
+      { name: 'Four-Part Chorales', start: 250, end: 438 },
+      { name: 'Songs and Arias', start: 439, end: 518 },
+      { name: 'Sacred Songs', start: 519, end: 523 },
+      { name: 'Quodlibet', start: 524, end: 524 },
+      { name: 'Sonatas', start: 525, end: 530 },
+      { name: 'Preludes, Toccatas, Fugues, Fantasias, Passacaglias', start: 531, end: 582 },
+      { name: 'Trios', start: 583, end: 586 },
+      { name: 'Miscellaneous Pieces', start: 587, end: 591 },
+      { name: 'Concertos', start: 592, end: 597 },
+      { name: 'Pedal Exercises', start: 598, end: 598 },
+      { name: 'Chorale Preludes', start: 599, end: 765 },
+      { name: 'Partitas and Chorale Variations', start: 766, end: 771 },
+      { name: 'Inventions', start: 772, end: 786 },
+      { name: 'Sinfonias', start: 787, end: 801 },
+      { name: 'Duettos', start: 802, end: 805 },
+      { name: 'English Suites', start: 806, end: 811 },
+      { name: 'French Suites', start: 812, end: 817 },
+      { name: 'Miscellaneous Suites', start: 818, end: 824 },
+      { name: 'Partitas', start: 825, end: 830 },
+      { name: 'Overtures and Suites', start: 831, end: 845 },
+      { name: 'Preludes, Fugues, Fantasias, Toccatas', start: 846, end: 920 },
+      { name: 'Preludes', start: 921, end: 943 },
+      { name: 'Fugues and Fughettas', start: 944, end: 962 },
+      { name: 'Sonatas and Sonata Movements', start: 963, end: 970 },
+      { name: 'Concertos (Keyboard)', start: 971, end: 987 },
+      { name: 'Variations and Miscellaneous Pieces', start: 988, end: 994 },
+      { name: 'For Solo Instruments', start: 995, end: 1013 },
+      { name: 'For Two or More Instruments', start: 1014, end: 1040 },
+      { name: 'Concertos (Orchestral)', start: 1041, end: 1065 },
+      { name: 'Overtures and Suites (Orchestral)', start: 1066, end: 1070 },
+      { name: 'Canons', start: 1072, end: 1078 },
+      { name: 'Late Contrapuntal Works', start: 1079, end: 1080 },
+      { name: 'More Recent BWV Additions', start: 1081, end: 1177 },
+      { name: 'Fragmentary, Lost, Doubtful and Spurious Works', prefix: 'Anh.' }
+    ];
+
     fetch('works.json')
       .then(response => response.json())
       .then(data => {
-        const tbody = document.querySelector('#cantatasTable tbody');
-        data.forEach(row => {
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td>${row.BWV}</td>
-            <td>${row.BC}</td>
-            <td>${row.Title}</td>
-            <td>${row.Key}</td>
-            <td>${row.Date}</td>
-            <td>${row.Genre}</td>
-            <td>${row.Forces}</td>
-            <td>${row.Notes}</td>
-          `;
-          tbody.appendChild(tr);
+        const container = document.getElementById('works');
+        categories.forEach(cat => {
+          const heading = document.createElement('h2');
+          heading.textContent = cat.name;
+          container.appendChild(heading);
+
+          const table = document.createElement('table');
+          const thead = document.createElement('thead');
+          thead.innerHTML = `<tr><th>BWV</th><th>BC</th><th>Tytuł</th><th>Tonacja</th><th>Data</th><th>Gatunek</th><th>Obsada</th><th>Uwagi</th></tr>`;
+          table.appendChild(thead);
+          const tbody = document.createElement('tbody');
+          table.appendChild(tbody);
+
+          data.filter(row => {
+            const bwv = row.BWV;
+            if (cat.prefix) {
+              return bwv.startsWith(cat.prefix);
+            }
+            const num = parseInt(bwv, 10);
+            return !isNaN(num) && num >= cat.start && num <= cat.end;
+          }).forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>${row.BWV}</td>
+              <td>${row.BC}</td>
+              <td>${row.Title}</td>
+              <td>${row.Key}</td>
+              <td>${row.Date}</td>
+              <td>${row.Genre}</td>
+              <td>${row.Forces}</td>
+              <td>${row.Notes}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+
+          container.appendChild(table);
         });
       })
       .catch(err => console.error('Error loading works.json', err));
