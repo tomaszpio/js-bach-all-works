@@ -108,10 +108,8 @@
           const bwv = normalizeBwv(`${match[1] || ''}${match[2]}`);
           const length = parseFloat(lengthStr) || 0;
           const url = `https://youtu.be/${id.trim()}`;
-          const prev = videoMap[bwv];
-          if (!prev || length > prev.length) {
-            videoMap[bwv] = { url, length };
-          }
+          if (!videoMap[bwv]) videoMap[bwv] = [];
+          videoMap[bwv].push({ url, length, file });
         });
       }
       const container = document.getElementById('works');
@@ -140,8 +138,12 @@
             return !isNaN(num) && num >= cat.start && num <= cat.end;
           }).forEach(row => {
             const tr = document.createElement('tr');
-            const entry = videoMap[normalizeBwv(row.BWV)];
-            const videoLink = entry ? entry.url : '';
+            const entries = videoMap[normalizeBwv(row.BWV)] || [];
+            const videoLinks = entries.map(e => {
+              const len = e.length ? `${e.length}s` : '';
+              const label = e.file.replace('.csv', '');
+              return `<a href="${e.url}" target="_blank">${label}${len ? ` (${len})` : ''}</a>`;
+            }).join('<br>');
             tr.innerHTML = `
               <td>${row.BWV}</td>
               <td>${row.BC}</td>
@@ -151,7 +153,7 @@
               <td>${row.Genre}</td>
               <td>${row.Forces}</td>
               <td>${row.Notes}</td>
-              <td>${videoLink ? `<a href="${videoLink}" target="_blank">link</a>` : ''}</td>
+              <td>${videoLinks}</td>
             `;
             tbody.appendChild(tr);
           });
