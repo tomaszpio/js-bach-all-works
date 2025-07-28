@@ -85,12 +85,12 @@
   function normalizeBwv(value) {
     const anh = value.match(/^Anh\.(\d+)/i);
     if (anh) {
-      return 'Anh.' + parseInt(anh[1], 10);
+      return 'Anh.' + String(parseInt(anh[1], 10));
     }
     if (/^\d+$/.test(value)) {
       return String(parseInt(value, 10));
     }
-    return value;
+    return value.trim();
   }
 
     async function loadData() {
@@ -103,14 +103,14 @@
           if (!line.trim()) return;
           const [title, id, lengthStr] = line.split(';');
           if (!title || !id) return;
-          const match = title.match(/BWV\s*([0-9]+)/i);
+          const match = title.match(/BWV\s*(Anh\.\s*)?(\d+)/i);
           if (!match) return;
-          const num = parseInt(normalizeBwv(match[1]), 10);
+          const bwv = normalizeBwv(`${match[1] || ''}${match[2]}`);
           const length = parseFloat(lengthStr) || 0;
           const url = `https://youtu.be/${id.trim()}`;
-          const prev = videoMap[num];
+          const prev = videoMap[bwv];
           if (!prev || length > prev.length) {
-            videoMap[num] = { url, length };
+            videoMap[bwv] = { url, length };
           }
         });
       }
@@ -140,7 +140,7 @@
             return !isNaN(num) && num >= cat.start && num <= cat.end;
           }).forEach(row => {
             const tr = document.createElement('tr');
-            const entry = videoMap[parseInt(normalizeBwv(row.BWV), 10)];
+            const entry = videoMap[normalizeBwv(row.BWV)];
             const videoLink = entry ? entry.url : '';
             tr.innerHTML = `
               <td>${row.BWV}</td>
