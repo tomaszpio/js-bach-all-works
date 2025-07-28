@@ -118,7 +118,7 @@
           const length = parseFloat(lengthStr) || 0;
           const url = `https://youtu.be/${id.trim()}`;
           if (!videoMap[bwv]) videoMap[bwv] = [];
-          videoMap[bwv].push({ url, length, file });
+          videoMap[bwv].push({ url, length, file, title });
         });
       }
       const container = document.getElementById('works');
@@ -147,11 +147,13 @@
             return !isNaN(num) && num >= cat.start && num <= cat.end;
           }).forEach(row => {
             const tr = document.createElement('tr');
-            const entries = videoMap[normalizeBwv(row.BWV)] || [];
+            const entries = (videoMap[normalizeBwv(row.BWV)] || [])
+              .slice()
+              .sort((a, b) => b.length - a.length);
             const videoLinks = entries.map(e => {
               const len = e.length ? `${e.length}s` : '';
               const label = e.file.replace('.csv', '');
-              return `<a href="${e.url}" target="_blank">${label}${len ? ` (${len})` : ''}</a>`;
+              return `<a href="${e.url}" target="_blank">${label}: ${e.title}${len ? ` (${len})` : ''}</a>`;
             }).join('<br>');
             tr.innerHTML = `
               <td>${row.BWV}</td>
