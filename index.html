@@ -133,7 +133,7 @@
             table.classList.toggle('collapsed');
           });
           const thead = document.createElement('thead');
-          thead.innerHTML = `<tr><th>BWV</th><th>BC</th><th>Tytuł</th><th>Tonacja</th><th>Data</th><th>Gatunek</th><th>Obsada</th><th>Uwagi</th><th>Video</th></tr>`;
+          thead.innerHTML = `<tr><th>BWV</th><th>BC</th><th>Tytuł</th><th>Tonacja</th><th>Data</th><th>Gatunek</th><th>Obsada</th><th>Uwagi</th><th>Tekst</th><th>Video</th></tr>`;
           table.appendChild(thead);
           const tbody = document.createElement('tbody');
           table.appendChild(tbody);
@@ -147,9 +147,11 @@
             return !isNaN(num) && num >= cat.start && num <= cat.end;
           }).forEach(row => {
             const tr = document.createElement('tr');
-            const entries = (videoMap[normalizeBwv(row.BWV)] || [])
+            const bwvNorm = normalizeBwv(row.BWV);
+            const entries = (videoMap[bwvNorm] || [])
               .slice()
               .sort((a, b) => b.length - a.length);
+            const textUrl = `http://kbpp.org.pl/bwv-${bwvNorm.toLowerCase().replace(/\s+/g, '').replace('.', '-')}`;
             const videoLinks = entries.map(e => {
               const len = e.length ? `${e.length}s` : '';
               const label = e.file.replace('.csv', '');
@@ -164,6 +166,7 @@
               <td>${row.Genre}</td>
               <td>${row.Forces}</td>
               <td>${row.Notes}</td>
+              <td><a href="${textUrl}" target="_blank">tekst</a></td>
               <td>${videoLinks}</td>
             `;
             tbody.appendChild(tr);
