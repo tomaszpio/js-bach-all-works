@@ -95,7 +95,7 @@
 
     async function loadData() {
       const works = await fetch('works.json').then(res => res.json());
-      const files = ['youtube.csv', 'Bacholoji.csv', 'Bachstiftung.csv', 'Netherlands_Bach_Society.csv'];
+      const files = ['Bacholoji.csv', 'Bachstiftung.csv', 'Netherlands_Bach_Society.csv'];
       const videoMap = {};
       for (const file of files) {
         const csv = await fetch(file).then(res => res.text());
