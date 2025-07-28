@@ -98,7 +98,16 @@
       const files = ['Bacholoji.csv', 'Bachstiftung.csv', 'Netherlands_Bach_Society.csv'];
       const videoMap = {};
       for (const file of files) {
-        const csv = await fetch(file).then(res => res.text());
+        const buffer = await fetch(file).then(res => res.arrayBuffer());
+        const bytes = new Uint8Array(buffer);
+        let csv;
+        if (bytes[0] === 0xff && bytes[1] === 0xfe) {
+          csv = new TextDecoder('utf-16le').decode(bytes);
+        } else if (bytes[0] === 0xfe && bytes[1] === 0xff) {
+          csv = new TextDecoder('utf-16be').decode(bytes);
+        } else {
+          csv = new TextDecoder('utf-8').decode(bytes);
+        }
         csv.split(/\r?\n/).forEach(line => {
           if (!line.trim()) return;
           const [title, id, lengthStr] = line.split(';');
