@@ -79,8 +79,19 @@
       { name: 'Kanony', start: 1072, end: 1078 },
       { name: 'Późne utwory kontrapunktyczne', start: 1079, end: 1080 },
       { name: 'Nowsze dodatki do BWV', start: 1081, end: 1177 },
-      { name: 'Utwory fragmentaryczne, zaginione, wątpliwe i fałszywe', prefix: 'Anh.' }
-    ];
+    { name: 'Utwory fragmentaryczne, zaginione, wątpliwe i fałszywe', prefix: 'Anh.' }
+  ];
+
+  function normalizeBwv(value) {
+    const anh = value.match(/^Anh\.(\d+)/i);
+    if (anh) {
+      return 'Anh.' + String(parseInt(anh[1], 10));
+    }
+    if (/^\d+$/.test(value)) {
+      return String(parseInt(value, 10));
+    }
+    return value.trim();
+  }
 
     async function loadData() {
       const works = await fetch('works.json').then(res => res.json());
@@ -92,14 +103,14 @@
           if (!line.trim()) return;
           const [title, id, lengthStr] = line.split(';');
           if (!title || !id) return;
-          const match = title.match(/BWV\s*([0-9]+)/i);
+          const match = title.match(/BWV\s*(Anh\.\s*)?(\d+)/i);
           if (!match) return;
-          const num = parseInt(match[1], 10);
+          const bwv = normalizeBwv(`${match[1] || ''}${match[2]}`);
           const length = parseFloat(lengthStr) || 0;
           const url = `https://youtu.be/${id.trim()}`;
-          const prev = videoMap[num];
+          const prev = videoMap[bwv];
           if (!prev || length > prev.length) {
-            videoMap[num] = { url, length };
+            videoMap[bwv] = { url, length };
           }
         });
       }
@@ -121,7 +132,7 @@
           table.appendChild(tbody);
 
           works.filter(row => {
-            const bwv = row.BWV;
+            const bwv = normalizeBwv(row.BWV);
             if (cat.prefix) {
               return bwv.startsWith(cat.prefix);
             }
@@ -129,7 +140,7 @@
             return !isNaN(num) && num >= cat.start && num <= cat.end;
           }).forEach(row => {
             const tr = document.createElement('tr');
-            const entry = videoMap[parseInt(row.BWV, 10)];
+            const entry = videoMap[normalizeBwv(row.BWV)];
             const videoLink = entry ? entry.url : '';
             tr.innerHTML = `
               <td>${row.BWV}</td>
