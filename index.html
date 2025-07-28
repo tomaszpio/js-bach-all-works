@@ -84,21 +84,25 @@
 
     async function loadData() {
       const works = await fetch('works.json').then(res => res.json());
-      const ytText = await fetch('youtube.csv').then(res => res.text());
+      const files = ['youtube.csv', 'Bacholoji.csv', 'Bachstiftung.csv', 'Netherlands_Bach_Society.csv'];
       const videoMap = {};
-      ytText.split(/\r?\n/).forEach(line => {
-        const [title, id] = line.split(';');
-        if (title && id) {
+      for (const file of files) {
+        const csv = await fetch(file).then(res => res.text());
+        csv.split(/\r?\n/).forEach(line => {
+          if (!line.trim()) return;
+          const [title, id, lengthStr] = line.split(';');
+          if (!title || !id) return;
           const match = title.match(/BWV\s*([0-9]+)/i);
-          if (match) {
-            const num = parseInt(match[1], 10);
-            if (!videoMap[num]) {
-              const url = `https://youtu.be/${id.trim()}`;
-              videoMap[num] = url;
-            }
+          if (!match) return;
+          const num = parseInt(match[1], 10);
+          const length = parseFloat(lengthStr) || 0;
+          const url = `https://youtu.be/${id.trim()}`;
+          const prev = videoMap[num];
+          if (!prev || length > prev.length) {
+            videoMap[num] = { url, length };
           }
-        }
-      });
+        });
+      }
       const container = document.getElementById('works');
       categories.forEach(cat => {
           const heading = document.createElement('h2');
@@ -125,7 +129,8 @@
             return !isNaN(num) && num >= cat.start && num <= cat.end;
           }).forEach(row => {
             const tr = document.createElement('tr');
-            const videoLink = videoMap[parseInt(row.BWV, 10)];
+            const entry = videoMap[parseInt(row.BWV, 10)];
+            const videoLink = entry ? entry.url : '';
             tr.innerHTML = `
               <td>${row.BWV}</td>
               <td>${row.BC}</td>
