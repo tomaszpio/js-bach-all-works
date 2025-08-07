@@ -30,6 +30,7 @@
     th {
       background-color: #333;
       color: white;
+      cursor: pointer;
     }
     tr:nth-child(even) {
       background-color: #f2f2f2;
@@ -91,6 +92,29 @@
       return String(parseInt(value, 10));
     }
     return value.trim();
+  }
+
+  function makeSortable(table) {
+    const headers = table.querySelectorAll('th');
+    headers.forEach((th, index) => {
+      let asc = true;
+      th.addEventListener('click', () => {
+        const tbody = table.tBodies[0];
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        rows.sort((a, b) => {
+          const A = a.children[index].textContent.trim();
+          const B = b.children[index].textContent.trim();
+          const numA = parseFloat(A);
+          const numB = parseFloat(B);
+          if (!isNaN(numA) && !isNaN(numB)) {
+            return asc ? numA - numB : numB - numA;
+          }
+          return asc ? A.localeCompare(B) : B.localeCompare(A);
+        });
+        asc = !asc;
+        rows.forEach(r => tbody.appendChild(r));
+      });
+    });
   }
 
     async function loadData() {
@@ -172,6 +196,7 @@
             tbody.appendChild(tr);
           });
 
+          makeSortable(table);
           container.appendChild(table);
         });
       }
