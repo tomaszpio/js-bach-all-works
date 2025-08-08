@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dzieła Bacha – wszystkie utwory</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-o9N1j7kG67wMPaG71mNVr3PVGQnuV+3fDXnJbmYsiDg=" crossorigin=""/>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -46,6 +47,16 @@
     #column-toggles label {
       margin-right: 10px;
     }
+    #map {
+      height: 400px;
+      margin: 20px 0;
+    }
+    #filters {
+      margin: 10px 0;
+    }
+    #filters label {
+      margin-right: 10px;
+    }
     @media (max-width: 600px) {
       body {
         padding: 10px;
@@ -62,6 +73,17 @@
 </head>
 <body>
   <h1>Dzieła Johanna Sebastiana Bacha</h1>
+  <div id="map"></div>
+  <div id="filters">
+    Filtry:
+    <label>Miasto:
+      <select id="city-filter">
+        <option value="">Wszystkie</option>
+      </select>
+    </label>
+    <label>Data od: <input type="number" id="date-from" style="width:6em"></label>
+    <label>do: <input type="number" id="date-to" style="width:6em"></label>
+  </div>
   <div id="column-toggles">
     Pokaż kolumny:
     <label><input type="checkbox" data-col="1"> BC</label>
@@ -76,6 +98,7 @@
   </div>
   <div id="works"></div>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-o8NJD95AckS4iigFsMghvYDn8ApPhRHF9RSbuuZbQ2E=" crossorigin=""></script>
   <script>
     const categories = [
       { name: 'Kantaty', start: 1, end: 224 },
@@ -167,6 +190,46 @@
   document.querySelectorAll('#column-toggles input').forEach(cb => {
     cb.addEventListener('change', updateColumnVisibility);
   });
+  function applyFilters() {
+    const city = document.getElementById('city-filter').value;
+    const from = parseInt(document.getElementById('date-from').value, 10);
+    const to = parseInt(document.getElementById('date-to').value, 10);
+    document.querySelectorAll('#works tbody tr').forEach(tr => {
+      const rowCity = tr.children[5].textContent.trim();
+      const dateStr = tr.children[4].textContent.trim();
+      const match = dateStr.match(/\d{4}/);
+      const year = match ? parseInt(match[0], 10) : null;
+      let show = true;
+      if (city && rowCity !== city) show = false;
+      if (from && (!year || year < from)) show = false;
+      if (to && (!year || year > to)) show = false;
+      tr.style.display = show ? '' : 'none';
+    });
+  }
+
+  document.getElementById('city-filter').addEventListener('change', applyFilters);
+  document.getElementById('date-from').addEventListener('input', applyFilters);
+  document.getElementById('date-to').addEventListener('input', applyFilters);
+
+  function createMap(cities) {
+    const cityCoords = {
+      'Arnstadt': [50.836, 10.948],
+      'Köthen': [51.75, 11.97],
+      'Leipzig': [51.3397, 12.3731],
+      'Lüneburg': [53.246, 10.414],
+      'Mühlhausen': [51.21, 10.452],
+      'Ohrdruf': [50.82, 10.729],
+      'Weimar': [50.979, 11.329]
+    };
+    const map = L.map('map').setView([51.1657, 10.4515], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '\u00a9 OpenStreetMap'
+    }).addTo(map);
+    cities.forEach(city => {
+      const coords = cityCoords[city];
+      if (coords) L.marker(coords).addTo(map).bindPopup(city);
+    });
+  }
 
     async function loadData() {
       const works = await fetch('works.json').then(res => res.json());
@@ -254,7 +317,17 @@
           makeSortable(table);
           container.appendChild(wrapper);
         });
+        const cities = [...new Set(works.map(w => w.City).filter(Boolean))].sort();
+        const cityFilter = document.getElementById('city-filter');
+        cities.forEach(c => {
+          const opt = document.createElement('option');
+          opt.value = c;
+          opt.textContent = c;
+          cityFilter.appendChild(opt);
+        });
         updateColumnVisibility();
+        applyFilters();
+        createMap(cities);
       }
 
       loadData().catch(err => console.error('Błąd wczytywania danych', err));
