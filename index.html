@@ -40,6 +40,12 @@
     .table-wrapper {
       overflow-x: auto;
     }
+    #column-toggles {
+      margin: 10px 0;
+    }
+    #column-toggles label {
+      margin-right: 10px;
+    }
     @media (max-width: 600px) {
       body {
         padding: 10px;
@@ -56,6 +62,18 @@
 </head>
 <body>
   <h1>Dzieła Johanna Sebastiana Bacha</h1>
+  <div id="column-toggles">
+    Pokaż kolumny:
+    <label><input type="checkbox" data-col="1"> BC</label>
+    <label><input type="checkbox" data-col="3"> Tonacja</label>
+    <label><input type="checkbox" data-col="4"> Data</label>
+    <label><input type="checkbox" data-col="5"> Miasto</label>
+    <label><input type="checkbox" data-col="6"> Gatunek</label>
+    <label><input type="checkbox" data-col="7"> Obsada</label>
+    <label><input type="checkbox" data-col="8"> Uwagi</label>
+    <label><input type="checkbox" data-col="9"> Tekst</label>
+    <label><input type="checkbox" data-col="10"> Video</label>
+  </div>
   <div id="works"></div>
 
   <script>
@@ -133,6 +151,22 @@
       });
     });
   }
+
+  function updateColumnVisibility() {
+    document.querySelectorAll('#column-toggles input').forEach(cb => {
+      const index = parseInt(cb.dataset.col, 10) + 1;
+      const display = cb.checked ? '' : 'none';
+      document.querySelectorAll(`#works table`).forEach(table => {
+        table.querySelectorAll(`th:nth-child(${index}), td:nth-child(${index})`).forEach(cell => {
+          cell.style.display = display;
+        });
+      });
+    });
+  }
+
+  document.querySelectorAll('#column-toggles input').forEach(cb => {
+    cb.addEventListener('change', updateColumnVisibility);
+  });
 
     async function loadData() {
       const works = await fetch('works.json').then(res => res.json());
@@ -220,6 +254,7 @@
           makeSortable(table);
           container.appendChild(wrapper);
         });
+        updateColumnVisibility();
       }
 
       loadData().catch(err => console.error('Błąd wczytywania danych', err));
