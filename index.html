@@ -133,7 +133,8 @@
             table.classList.toggle('collapsed');
           });
           const thead = document.createElement('thead');
-          thead.innerHTML = `<tr><th>BWV</th><th>BC</th><th>Tytuł</th><th>Tonacja</th><th>Data</th><th>Gatunek</th><th>Obsada</th><th>Uwagi</th><th>Tekst</th><th>Video</th></tr>`;
+          // Kolumna "Miasto" może pozostać pusta, jeśli brak danych o miejscu powstania
+          thead.innerHTML = `<tr><th>BWV</th><th>BC</th><th>Tytuł</th><th>Tonacja</th><th>Data</th><th>Miasto</th><th>Gatunek</th><th>Obsada</th><th>Uwagi</th><th>Tekst</th><th>Video</th></tr>`;
           table.appendChild(thead);
           const tbody = document.createElement('tbody');
           table.appendChild(tbody);
@@ -163,6 +164,7 @@
               <td>${row.Title}</td>
               <td>${row.Key}</td>
               <td>${row.Date}</td>
+              <td>${row.City || ''}</td>
               <td>${row.Genre}</td>
               <td>${row.Forces}</td>
               <td>${row.Notes}</td>
