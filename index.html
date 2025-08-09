@@ -97,9 +97,6 @@
     <label><input type="checkbox" data-col="10"> Video</label>
   </div>
   <div id="works"></div>
-
-  <script id="works-data" type="application/json" src="works.json"></script>
-
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-o8NJD95AckS4iigFsMghvYDn8ApPhRHF9RSbuuZbQ2E=" crossorigin=""></script>
   <script>
     const categories = [
@@ -234,7 +231,7 @@
   }
 
     async function loadData() {
-      const works = JSON.parse(document.getElementById('works-data').textContent);
+      const works = await fetch('works.json').then(res => res.json());
       const files = ['Bacholoji.csv', 'Bachstiftung.csv', 'Netherlands_Bach_Society.csv'];
       const videoMap = {};
       for (const file of files) {
