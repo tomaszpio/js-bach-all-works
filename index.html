@@ -211,22 +211,25 @@
   document.getElementById('date-to').addEventListener('input', applyFilters);
 
   function createMap(cities) {
-    const cityCoords = {
-      'Arnstadt': [50.836, 10.948],
-      'Köthen': [51.75, 11.97],
-      'Leipzig': [51.3397, 12.3731],
-      'Lüneburg': [53.246, 10.414],
-      'Mühlhausen': [51.21, 10.452],
-      'Ohrdruf': [50.82, 10.729],
-      'Weimar': [50.979, 11.329]
+    const cityInfo = {
+      'Arnstadt': { coords: [50.836, 10.948], years: '1703–1707' },
+      'Köthen': { coords: [51.75, 11.97], years: '1717–1723' },
+      'Leipzig': { coords: [51.3397, 12.3731], years: '1723–1750' },
+      'Lüneburg': { coords: [53.246, 10.414], years: '1700–1702' },
+      'Mühlhausen': { coords: [51.21, 10.452], years: '1707–1708' },
+      'Ohrdruf': { coords: [50.82, 10.729], years: '1695–1700' },
+      'Weimar': { coords: [50.979, 11.329], years: '1708–1717' }
     };
     const map = L.map('map').setView([51.1657, 10.4515], 6);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '\u00a9 OpenStreetMap'
     }).addTo(map);
     cities.forEach(city => {
-      const coords = cityCoords[city];
-      if (coords) L.marker(coords).addTo(map).bindPopup(city);
+      const info = cityInfo[city];
+      if (info) {
+        const popup = info.years ? `${city}: ${info.years}` : city;
+        L.marker(info.coords).addTo(map).bindPopup(popup);
+      }
     });
   }
 
