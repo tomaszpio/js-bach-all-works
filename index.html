@@ -6,10 +6,12 @@
   <title>Dzieła Bacha – wszystkie utwory</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
   <h1>Dzieła Johanna Sebastiana Bacha</h1>
-  <p><a href="bach_timeline.html">Oś czasu życia Johanna Sebastiana Bacha</a></p>
+  <h2>Oś czasu życia Johanna Sebastiana Bacha</h2>
+  <div id="timeline"></div>
   <div id="map"></div>
   <svg id="chart" width="600" height="600"></svg>
   <div id="filters">
@@ -35,6 +37,52 @@
     <label><input type="checkbox" data-col="10"> Video</label>
   </div>
   <div id="works"></div>
+  <script>
+    fetch('timeline_data.json')
+      .then(response => response.json())
+      .then(data => {
+        const margin = {top: 20, right: 20, bottom: 30, left: 40};
+        const width = 1000 - margin.left - margin.right;
+        const height = 200 - margin.top - margin.bottom;
+
+        const svg = d3.select('#timeline')
+          .append('svg')
+          .attr('width', width + margin.left + margin.right)
+          .attr('height', height + margin.top + margin.bottom)
+          .append('g')
+          .attr('transform', `translate(${margin.left},${margin.top})`);
+
+        const x = d3.scaleLinear()
+          .domain(d3.extent(data, d => d.year))
+          .range([0, width]);
+
+        svg.append('g')
+          .attr('transform', `translate(0,${height})`)
+          .call(d3.axisBottom(x).tickFormat(d3.format('d')));
+
+        const tooltip = d3.select('body')
+          .append('div')
+          .attr('class', 'timeline-tooltip')
+          .style('display', 'none');
+
+        svg.selectAll('circle')
+          .data(data)
+          .enter()
+          .append('circle')
+          .attr('cx', d => x(d.year))
+          .attr('cy', height / 2)
+          .attr('r', 4)
+          .attr('fill', 'steelblue')
+          .on('mouseover', (event, d) => {
+            tooltip
+              .style('display', 'block')
+              .html(`<strong>${d.year}</strong>: ${d.event || '(brak wydarzeń)'}`)
+              .style('left', (event.pageX + 5) + 'px')
+              .style('top', (event.pageY - 28) + 'px');
+          })
+          .on('mouseout', () => tooltip.style('display', 'none'));
+      });
+  </script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="main.js"></script>
   <script type="module" src="chart.js"></script>

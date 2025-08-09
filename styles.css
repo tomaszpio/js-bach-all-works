@@ -65,6 +65,18 @@ tr:nth-child(even) {
   pointer-events: none;
   font-size: 12px;
 }
+.timeline-tooltip {
+  position: absolute;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 5px;
+  pointer-events: none;
+  font-size: 0.9em;
+}
+#timeline svg {
+  background: #fff;
+  border: 1px solid #ccc;
+}
 @media (max-width: 600px) {
   body {
     padding: 10px;
