@@ -1,0 +1,1164 @@
+{
+  "name": "Rok liturgiczny",
+  "children": [
+    {
+      "name": "Adwent",
+      "children": [
+        {
+          "name": "1 Niedziela Adwentu",
+          "children": [
+            {
+              "name": "BWV 36"
+            },
+            {
+              "name": "BWV 61"
+            },
+            {
+              "name": "BWV 62"
+            }
+          ]
+        },
+        {
+          "name": "2 Niedziela Adwentu",
+          "children": [
+            {
+              "name": "BWV 70a"
+            }
+          ]
+        },
+        {
+          "name": "3 Niedziela Adwentu (Gaudete)",
+          "children": [
+            {
+              "name": "BWV 186a"
+            }
+          ]
+        },
+        {
+          "name": "4 Niedziela Adwentu",
+          "children": [
+            {
+              "name": "BWV 132"
+            },
+            {
+              "name": "BWV 147a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Okres Bożego Narodzenia",
+      "children": [
+        {
+          "name": "Obrzezanie Pańskie / Nowy Rok",
+          "children": [
+            {
+              "name": "BWV 16"
+            },
+            {
+              "name": "BWV 41"
+            },
+            {
+              "name": "BWV 143"
+            },
+            {
+              "name": "BWV 171"
+            },
+            {
+              "name": "BWV 190"
+            },
+            {
+              "name": "BWV 248IV"
+            }
+          ]
+        },
+        {
+          "name": "Epifania / Objawienie Pańskie",
+          "children": [
+            {
+              "name": "BWV 65"
+            },
+            {
+              "name": "BWV 123"
+            },
+            {
+              "name": "BWV 248VI"
+            }
+          ]
+        },
+        {
+          "name": "Pierwsza niedziela po Objawieniu",
+          "children": [
+            {
+              "name": "BWV 32"
+            },
+            {
+              "name": "BWV 124"
+            },
+            {
+              "name": "BWV 154"
+            }
+          ]
+        },
+        {
+          "name": "Druga niedziela po Objawieniu",
+          "children": [
+            {
+              "name": "BWV 3"
+            },
+            {
+              "name": "BWV 13"
+            },
+            {
+              "name": "BWV 155"
+            }
+          ]
+        },
+        {
+          "name": "Trzecia niedziela po Objawieniu",
+          "children": [
+            {
+              "name": "BWV 72"
+            },
+            {
+              "name": "BWV 73"
+            },
+            {
+              "name": "BWV 111"
+            },
+            {
+              "name": "BWV 156"
+            }
+          ]
+        },
+        {
+          "name": "4. Niedziela po Objawieniu",
+          "children": [
+            {
+              "name": "BWV 14"
+            },
+            {
+              "name": "BWV 81"
+            }
+          ]
+        },
+        {
+          "name": "5. Niedziela po Objawieniu",
+          "children": []
+        },
+        {
+          "name": "6. Niedziela po Objawieniu",
+          "children": []
+        },
+        {
+          "name": "Ostatnia Niedziela po Objawieniu",
+          "children": []
+        },
+        {
+          "name": "Wigilia Bożego Narodzenia",
+          "children": []
+        },
+        {
+          "name": "Boże Narodzenie",
+          "children": [
+            {
+              "name": "BWV 63"
+            },
+            {
+              "name": "BWV 91"
+            },
+            {
+              "name": "BWV 110"
+            },
+            {
+              "name": "BWV 191"
+            },
+            {
+              "name": "BWV 248I"
+            },
+            {
+              "name": "BWV 197a"
+            }
+          ]
+        },
+        {
+          "name": "2 Dzień Świąt Bożego Narodzenia",
+          "children": [
+            {
+              "name": "BWV 40"
+            },
+            {
+              "name": "BWV 57"
+            },
+            {
+              "name": "BWV 121"
+            },
+            {
+              "name": "BWV 248II"
+            }
+          ]
+        },
+        {
+          "name": "3 Dzień Świąt Bożego Narodzenia (Dzień Jana Ewangelisty)",
+          "children": [
+            {
+              "name": "BWV 64"
+            },
+            {
+              "name": "BWV 133"
+            },
+            {
+              "name": "BWV 151"
+            },
+            {
+              "name": "BWV 248III"
+            }
+          ]
+        },
+        {
+          "name": "Niedziela w Oktawie Bożego Narodzenia",
+          "children": [
+            {
+              "name": "BWV 28"
+            },
+            {
+              "name": "BWV 122"
+            },
+            {
+              "name": "BWV 152"
+            }
+          ]
+        },
+        {
+          "name": "Ostatni Dzień Roku  / Sylwester",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Przedpoście",
+      "children": [
+        {
+          "name": "Niedziela Siedemdziesiątnicy / Niedziela Starozapustna",
+          "children": [
+            {
+              "name": "BWV 84"
+            },
+            {
+              "name": "BWV 92"
+            },
+            {
+              "name": "BWV 144"
+            }
+          ]
+        },
+        {
+          "name": "Niedziela Sześćdziesiątnicy / Niedziela Mięsopustna",
+          "children": [
+            {
+              "name": "BWV 18"
+            },
+            {
+              "name": "BWV 126"
+            },
+            {
+              "name": "BWV 181"
+            }
+          ]
+        },
+        {
+          "name": "Niedziela Pięćdziesiątnicy / Niedziela Zapustna",
+          "children": [
+            {
+              "name": "BWV 22"
+            },
+            {
+              "name": "BWV 23"
+            },
+            {
+              "name": "BWV 127"
+            },
+            {
+              "name": "BWV 159"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Wielki Post",
+      "children": [
+        {
+          "name": "Zapustny Poniedziałek",
+          "children": []
+        },
+        {
+          "name": "Ostatki (zapustny wtorek)",
+          "children": []
+        },
+        {
+          "name": "Środa Popielcowa / Popielec",
+          "children": []
+        },
+        {
+          "name": "1 Niedziela Wielkiego Postu",
+          "children": []
+        },
+        {
+          "name": "2 Niedziela Wielkiego Postu",
+          "children": []
+        },
+        {
+          "name": "3 Niedziela Wielkiego Postu",
+          "children": [
+            {
+              "name": "BWV 54"
+            },
+            {
+              "name": "BWV 80a"
+            }
+          ]
+        },
+        {
+          "name": "4 Niedziela Wielkiego postu (Laetare)",
+          "children": []
+        },
+        {
+          "name": "5 Niedziela Wielkiego Postu / 1 Niedziela Męki Pańskiej",
+          "children": []
+        },
+        {
+          "name": "6 Niedziela Wielkiego Postu / 2 Niedziela Męki Pańskiej czyli Palmowa",
+          "children": [
+            {
+              "name": "BWV 182"
+            }
+          ]
+        },
+        {
+          "name": "Wielki Czwartek",
+          "children": []
+        },
+        {
+          "name": "Wielki Piątek",
+          "children": []
+        },
+        {
+          "name": "Wielka Sobota",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Wielkanoc",
+      "children": [
+        {
+          "name": "Niedziela Wielkanocna",
+          "children": [
+            {
+              "name": "BWV 4"
+            },
+            {
+              "name": "BWV 31"
+            },
+            {
+              "name": "BWV 249"
+            }
+          ]
+        },
+        {
+          "name": "Poniedziałek w Oktawie Wielkanocnej",
+          "children": [
+            {
+              "name": "BWV 6"
+            },
+            {
+              "name": "BWV 66"
+            }
+          ]
+        },
+        {
+          "name": "Wtorek w Oktawie Wielkanocnej",
+          "children": [
+            {
+              "name": "BWV 134"
+            },
+            {
+              "name": "BWV 145"
+            },
+            {
+              "name": "BWV 158"
+            }
+          ]
+        },
+        {
+          "name": "Niedziela Biała / Niedziela Przewodnia / Niedziela w Oktawie Wielkanocnej",
+          "children": [
+            {
+              "name": "BWV 42"
+            },
+            {
+              "name": "BWV 67"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Wniebowstąpienie",
+      "children": [
+        {
+          "name": "Wniebowstąpienie Pańskie",
+          "children": [
+            {
+              "name": "BWV 11"
+            },
+            {
+              "name": "BWV 37"
+            },
+            {
+              "name": "BWV 43"
+            },
+            {
+              "name": "BWV 128"
+            }
+          ]
+        },
+        {
+          "name": "Niedziela w Oktawie Wniebowstąpienia",
+          "children": [
+            {
+              "name": "BWV 44"
+            },
+            {
+              "name": "BWV 183"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Zesłanie Ducha Świętego",
+      "children": [
+        {
+          "name": "Zesłanie Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 34"
+            },
+            {
+              "name": "BWV 59"
+            },
+            {
+              "name": "BWV 74"
+            },
+            {
+              "name": "BWV 172"
+            }
+          ]
+        },
+        {
+          "name": "1 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 20"
+            },
+            {
+              "name": "BWV 39"
+            },
+            {
+              "name": "BWV 75"
+            }
+          ]
+        },
+        {
+          "name": "2 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 2"
+            },
+            {
+              "name": "BWV 76"
+            }
+          ]
+        },
+        {
+          "name": "3 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 135"
+            }
+          ]
+        },
+        {
+          "name": "4 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 24"
+            },
+            {
+              "name": "BWV 177"
+            },
+            {
+              "name": "BWV 185"
+            }
+          ]
+        },
+        {
+          "name": "5 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 88"
+            },
+            {
+              "name": "BWV 93"
+            }
+          ]
+        },
+        {
+          "name": "6 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 9"
+            },
+            {
+              "name": "BWV 170"
+            }
+          ]
+        },
+        {
+          "name": "7 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 107"
+            },
+            {
+              "name": "BWV 186"
+            },
+            {
+              "name": "BWV 187"
+            },
+            {
+              "name": "BWV Anh.I 1209"
+            }
+          ]
+        },
+        {
+          "name": "8 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 45"
+            },
+            {
+              "name": "BWV 136"
+            },
+            {
+              "name": "BWV 178"
+            }
+          ]
+        },
+        {
+          "name": "9 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 94"
+            },
+            {
+              "name": "BWV 105"
+            },
+            {
+              "name": "BWV 168"
+            }
+          ]
+        },
+        {
+          "name": "10 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 46"
+            },
+            {
+              "name": "BWV 101"
+            },
+            {
+              "name": "BWV 102"
+            }
+          ]
+        },
+        {
+          "name": "11 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 179"
+            }
+          ]
+        },
+        {
+          "name": "12 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 35"
+            },
+            {
+              "name": "BWV 113"
+            },
+            {
+              "name": "BWV 137"
+            },
+            {
+              "name": "BWV 199"
+            },
+            {
+              "name": "BWV 69a"
+            }
+          ]
+        },
+        {
+          "name": "13 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 33"
+            },
+            {
+              "name": "BWV 77"
+            },
+            {
+              "name": "BWV 164"
+            }
+          ]
+        },
+        {
+          "name": "14 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 17"
+            },
+            {
+              "name": "BWV 25"
+            },
+            {
+              "name": "BWV 78"
+            }
+          ]
+        },
+        {
+          "name": "15 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 51"
+            },
+            {
+              "name": "BWV 99"
+            },
+            {
+              "name": "BWV 138"
+            }
+          ]
+        },
+        {
+          "name": "16 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 8"
+            },
+            {
+              "name": "BWV 27"
+            },
+            {
+              "name": "BWV 95"
+            }
+          ]
+        },
+        {
+          "name": "17 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 47"
+            },
+            {
+              "name": "BWV 114"
+            },
+            {
+              "name": "BWV 148"
+            }
+          ]
+        },
+        {
+          "name": "18 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 96"
+            },
+            {
+              "name": "BWV 169"
+            }
+          ]
+        },
+        {
+          "name": "19 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 5"
+            },
+            {
+              "name": "BWV 48"
+            },
+            {
+              "name": "BWV 56"
+            },
+            {
+              "name": "HWV 56"
+            }
+          ]
+        },
+        {
+          "name": "20 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 49"
+            },
+            {
+              "name": "BWV 162"
+            },
+            {
+              "name": "BWV 180"
+            }
+          ]
+        },
+        {
+          "name": "21 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 38"
+            },
+            {
+              "name": "BWV 98"
+            },
+            {
+              "name": "BWV 109"
+            },
+            {
+              "name": "BWV 188"
+            }
+          ]
+        },
+        {
+          "name": "22 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 55"
+            },
+            {
+              "name": "BWV 89"
+            },
+            {
+              "name": "BWV 115"
+            }
+          ]
+        },
+        {
+          "name": "23 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 52"
+            },
+            {
+              "name": "BWV 139"
+            },
+            {
+              "name": "BWV 163"
+            }
+          ]
+        },
+        {
+          "name": "24 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 26"
+            },
+            {
+              "name": "BWV 60"
+            }
+          ]
+        },
+        {
+          "name": "25 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 90"
+            },
+            {
+              "name": "BWV 116"
+            }
+          ]
+        },
+        {
+          "name": "26 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 70"
+            }
+          ]
+        },
+        {
+          "name": "27 Niedziela po Zesłaniu Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 140"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Święta i okazje",
+      "children": [
+        {
+          "name": "Dzień Pokuty i Modlitwy",
+          "children": []
+        },
+        {
+          "name": "Niedziela Wieczności",
+          "children": []
+        },
+        {
+          "name": "Oczyszczenie Maryi",
+          "children": [
+            {
+              "name": "BWV 82"
+            },
+            {
+              "name": "BWV 83"
+            },
+            {
+              "name": "BWV 125"
+            },
+            {
+              "name": "BWV 161"
+            },
+            {
+              "name": "BWV 200"
+            }
+          ]
+        },
+        {
+          "name": "Dzień Narodzenia  Jana Chrzciciela",
+          "children": [
+            {
+              "name": "BWV 7"
+            },
+            {
+              "name": "BWV 30"
+            },
+            {
+              "name": "BWV 167"
+            }
+          ]
+        },
+        {
+          "name": "Święto Nawiedzenia Maryi",
+          "children": [
+            {
+              "name": "BWV 10"
+            },
+            {
+              "name": "BWV 147"
+            }
+          ]
+        },
+        {
+          "name": "Święto Michała Archanioła",
+          "children": [
+            {
+              "name": "BWV 19"
+            },
+            {
+              "name": "BWV 50"
+            },
+            {
+              "name": "BWV 130"
+            },
+            {
+              "name": "BWV 149"
+            }
+          ]
+        },
+        {
+          "name": "Święto Reformacji",
+          "children": [
+            {
+              "name": "BWV 79"
+            },
+            {
+              "name": "BWV 80"
+            }
+          ]
+        },
+        {
+          "name": "Dzień Mikołaja",
+          "children": []
+        },
+        {
+          "name": "Na dowolny okres, dowolny czas",
+          "children": []
+        },
+        {
+          "name": "Na dowolne okazje",
+          "children": [
+            {
+              "name": "BWV 21"
+            },
+            {
+              "name": "BWV 100"
+            },
+            {
+              "name": "BWV 131"
+            },
+            {
+              "name": "BWV 150"
+            }
+          ]
+        },
+        {
+          "name": "Na śluby",
+          "children": [
+            {
+              "name": "BWV 195"
+            },
+            {
+              "name": "BWV 197"
+            },
+            {
+              "name": "BWV 202"
+            },
+            {
+              "name": "BWV 210"
+            },
+            {
+              "name": "BWV 216"
+            },
+            {
+              "name": "BWV 250"
+            },
+            {
+              "name": "BWV 251"
+            },
+            {
+              "name": "BWV 252"
+            },
+            {
+              "name": "BWV 34a"
+            },
+            {
+              "name": "BWV 120a"
+            }
+          ]
+        },
+        {
+          "name": "Pogrzeb",
+          "children": [
+            {
+              "name": "BWV 106"
+            },
+            {
+              "name": "BWV 118"
+            },
+            {
+              "name": "BWV 157"
+            },
+            {
+              "name": "KV 626"
+            },
+            {
+              "name": "SWV 391"
+            }
+          ]
+        },
+        {
+          "name": "Wybór rady miejskiej",
+          "children": [
+            {
+              "name": "BWV 29"
+            },
+            {
+              "name": "BWV 69"
+            },
+            {
+              "name": "BWV 71"
+            },
+            {
+              "name": "BWV 119"
+            },
+            {
+              "name": "BWV 120"
+            },
+            {
+              "name": "BWV 193"
+            }
+          ]
+        },
+        {
+          "name": "Urodziny",
+          "children": [
+            {
+              "name": "BWV 208"
+            },
+            {
+              "name": "BWV 214"
+            },
+            {
+              "name": "BWV 1127"
+            },
+            {
+              "name": "BWV 249a"
+            },
+            {
+              "name": "BWV 66a"
+            },
+            {
+              "name": "BWV 173a"
+            },
+            {
+              "name": "BWV 36c"
+            },
+            {
+              "name": "BWV 36a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Inne",
+      "children": [
+        {
+          "name": "Niedziela Po Obrzezaniu Pańskim",
+          "children": [
+            {
+              "name": "BWV 58"
+            },
+            {
+              "name": "BWV 153"
+            },
+            {
+              "name": "BWV 248V"
+            }
+          ]
+        },
+        {
+          "name": "2 Niedziela Po Wielkiej Nocy",
+          "children": [
+            {
+              "name": "BWV 85"
+            },
+            {
+              "name": "BWV 104"
+            },
+            {
+              "name": "BWV 112"
+            }
+          ]
+        },
+        {
+          "name": "3 Niedziela Po Wielkiej Nocy",
+          "children": [
+            {
+              "name": "BWV 12"
+            },
+            {
+              "name": "BWV 103"
+            },
+            {
+              "name": "BWV 146"
+            }
+          ]
+        },
+        {
+          "name": "4 Niedziela Po Wielkiej Nocy",
+          "children": [
+            {
+              "name": "BWV 108"
+            },
+            {
+              "name": "BWV 166"
+            }
+          ]
+        },
+        {
+          "name": "5 Niedziela Po Wielkiej Nocy",
+          "children": [
+            {
+              "name": "BWV 86"
+            },
+            {
+              "name": "BWV 87"
+            }
+          ]
+        },
+        {
+          "name": "Poniedziałek w Oktawie Zesłania Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 68"
+            },
+            {
+              "name": "BWV 173"
+            },
+            {
+              "name": "BWV 174"
+            }
+          ]
+        },
+        {
+          "name": "Wtorek w Oktawie Zesłania Ducha Świętego",
+          "children": [
+            {
+              "name": "BWV 175"
+            },
+            {
+              "name": "BWV 184"
+            }
+          ]
+        },
+        {
+          "name": "Uroczystość Trójcy Przenajświętszej",
+          "children": [
+            {
+              "name": "BWV 129"
+            },
+            {
+              "name": "BWV 165"
+            },
+            {
+              "name": "BWV 176"
+            },
+            {
+              "name": "BWV 194"
+            }
+          ]
+        },
+        {
+          "name": "Boże Ciało",
+          "children": []
+        },
+        {
+          "name": "Zwiastowanie Maryi",
+          "children": [
+            {
+              "name": "BWV 1"
+            }
+          ]
+        },
+        {
+          "name": "1 maja",
+          "children": []
+        },
+        {
+          "name": "Na nabożeństwa pokutne",
+          "children": []
+        }
+      ]
+    }
+  ]
+}
