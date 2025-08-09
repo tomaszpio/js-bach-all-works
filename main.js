@@ -233,6 +233,7 @@
         updateColumnVisibility();
         applyFilters();
         createMap(cities);
+        document.dispatchEvent(new Event('dataLoaded'));
       }
 
   loadData().catch(err => console.error('Błąd wczytywania danych', err));
