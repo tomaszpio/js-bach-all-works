@@ -4,6 +4,15 @@
 <style>
 body { font-family: sans-serif; }
 svg { width: 100%; height: auto; }
+.tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  pointer-events: none;
+  font-size: 12px;
+}
 </style>
 <svg id="chart" width="932" height="932"></svg>
 <script type="module">
@@ -17,6 +26,10 @@ Promise.all([
   fetch('works.json').then(r => r.json())
 ]).then(([data, works]) => {
   const worksMap = new Map(works.map(d => [d.BWV, d.Title]));
+  const tooltip = d3.select('body')
+    .append('div')
+    .attr('class', 'tooltip')
+    .style('opacity', 0);
 
   function getTitle(name) {
     const match = name.match(/^BWV\s*(\d+)([a-z])?$/i);
@@ -72,7 +85,14 @@ Promise.all([
       .join('path')
         .attr('fill', d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
         .attr('fill-opacity', d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0)
-        .attr('d', d => arc(d.current));
+        .attr('d', d => arc(d.current))
+        .on('mousemove', (event, d) => {
+          tooltip.style('opacity', 1)
+                 .html(tooltipText(d).replace(/\n/g, '<br/>'))
+                 .style('left', (event.pageX + 10) + 'px')
+                 .style('top', (event.pageY + 10) + 'px');
+        })
+        .on('mouseout', () => tooltip.style('opacity', 0));
 
   path.append('title')
       .text(d => tooltipText(d));
