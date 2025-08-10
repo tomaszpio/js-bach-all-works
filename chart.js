@@ -89,6 +89,35 @@ Promise.all([
   path.append('title')
       .text(d => tooltipText(d));
 
+  function arcLength(d) {
+    const r = ((d.y0 + d.y1) / 2) * radius;
+    return (d.x1 - d.x0) * r;
+  }
+
+  function wrapText(text, width) {
+    text.each(function() {
+      const textSel = d3.select(this);
+      const words = textSel.text().split(/\s+/).filter(Boolean);
+      let line = [];
+      let lineNumber = 0;
+      const lineHeight = 1.1;
+      let tspan = textSel.text(null).append('tspan').attr('x', 0).attr('dy', '0em');
+      words.forEach(word => {
+        line.push(word);
+        tspan.text(line.join(' '));
+        if (tspan.node().getComputedTextLength() > width && line.length > 1) {
+          line.pop();
+          tspan.text(line.join(' '));
+          line = [word];
+          tspan = textSel.append('tspan')
+            .attr('x', 0)
+            .attr('dy', `${++lineNumber * lineHeight}em`)
+            .text(word);
+        }
+      });
+    });
+  }
+
   const label = g.append('g')
       .attr('pointer-events', 'none')
       .attr('text-anchor', 'middle')
@@ -96,10 +125,17 @@ Promise.all([
       .selectAll('text')
       .data(root.descendants().slice(1))
       .join('text')
-        .attr('dy', '0.35em')
+        .attr('dy', '0.35em');
+
+  function updateLabels() {
+    label
         .attr('fill-opacity', d => +labelVisible(d.current))
         .attr('transform', d => labelTransform(d.current))
-        .text(d => d.data.name);
+        .text(d => d.data.name)
+        .each(function(d) { wrapText(d3.select(this), arcLength(d.current)); });
+  }
+
+  updateLabels();
 
   path.filter(d => d.children)
       .style('cursor', 'pointer')
@@ -140,7 +176,10 @@ Promise.all([
         return +this.getAttribute('fill-opacity') || labelVisible(d.target);
       }).transition(t)
         .attr('fill-opacity', d => +labelVisible(d.target))
-        .attrTween('transform', d => () => labelTransform(d.current));
+        .attrTween('transform', d => () => labelTransform(d.current))
+        .on('end', function(d) {
+          wrapText(d3.select(this), arcLength(d.current));
+        });
   }
 
   function arcVisible(d) {
