@@ -19,11 +19,17 @@ Promise.all([
     const num = match[1].padStart(4, '0');
     const suffix = match[2] || '';
     return worksMap.get(num + suffix) || '';
-    }
+  }
+
+  function nodePath(d, includeLeaf = true) {
+    const names = d.ancestors().reverse().map(n => n.data.name).slice(1);
+    if (!includeLeaf) names.pop();
+    return names.join(' → ');
+  }
 
   function tooltipText(d) {
     if (d.children) {
-      const lines = [d.data.name];
+      const lines = [nodePath(d)];
       d.leaves().forEach(leaf => {
         const title = getTitle(leaf.data.name);
         lines.push(`${leaf.data.name}${title ? ' – ' + title : ''}`);
@@ -31,7 +37,9 @@ Promise.all([
       return lines.join('\n');
     } else {
       const title = getTitle(d.data.name);
-      return `${d.data.name}${title ? ' – ' + title : ''}`;
+      const path = nodePath(d, false);
+      const workLine = `${d.data.name}${title ? ' – ' + title : ''}`;
+      return path ? `${path}\n${workLine}` : workLine;
     }
   }
 
