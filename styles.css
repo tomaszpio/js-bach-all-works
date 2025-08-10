@@ -49,6 +49,9 @@ tr:nth-child(even) {
 #filters label {
   margin-right: 10px;
 }
+#filters input[type="number"] {
+  width: 6em;
+}
 #chart {
   width: 100%;
   height: auto;
