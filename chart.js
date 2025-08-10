@@ -78,6 +78,7 @@ Promise.all([
         .attr('fill-opacity', d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0)
         .attr('pointer-events', d => arcVisible(d.current) ? 'auto' : 'none')
         .attr('d', d => arc(d.current))
+        .attr('aria-label', d => tooltipText(d))
         .on('mousemove', (event, d) => {
           tooltip.style('opacity', 1)
                  .html(tooltipText(d).replace(/\n/g, '<br/>'))
@@ -85,9 +86,6 @@ Promise.all([
                  .style('top', (event.pageY + 10) + 'px');
         })
         .on('mouseout', () => tooltip.style('opacity', 0));
-
-  path.append('title')
-      .text(d => tooltipText(d));
 
   function arcLength(d) {
     const r = ((d.y0 + d.y1) / 2) * radius;
