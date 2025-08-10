@@ -177,8 +177,9 @@
           container.appendChild(heading);
 
           const table = document.createElement('table');
+          table.className = 'table is-striped is-hoverable is-fullwidth';
           const wrapper = document.createElement('div');
-          wrapper.classList.add('table-wrapper', 'collapsed');
+          wrapper.classList.add('table-container', 'collapsed');
           wrapper.appendChild(table);
           heading.addEventListener('click', () => {
             wrapper.classList.toggle('collapsed');

@@ -4,42 +4,68 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dzieła Bacha – wszystkie utwory</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <link rel="stylesheet" href="styles.css">
   <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
-  <h1>Dzieła Johanna Sebastiana Bacha</h1>
-  <h2>Oś czasu życia Johanna Sebastiana Bacha</h2>
-  <div id="timeline"></div>
-  <div id="visualizations">
-    <div id="map"></div>
-    <svg id="chart" width="600" height="600"></svg>
-  </div>
-  <div id="filters">
-    Filtry:
-    <label>Miasto:
-      <select id="city-filter">
-        <option value="">Wszystkie</option>
-      </select>
-    </label>
-    <label>Data od: <input type="number" id="date-from"></label>
-    <label>do: <input type="number" id="date-to"></label>
-  </div>
-  <div id="column-toggles">
-    Pokaż kolumny:
-    <label><input type="checkbox" data-col="1"> BC</label>
-    <label><input type="checkbox" data-col="3"> Tonacja</label>
-    <label><input type="checkbox" data-col="4"> Data</label>
-    <label><input type="checkbox" data-col="5"> Miasto</label>
-    <label><input type="checkbox" data-col="6"> Gatunek</label>
-    <label><input type="checkbox" data-col="7"> Obsada</label>
-    <label><input type="checkbox" data-col="8"> Uwagi</label>
-    <label><input type="checkbox" data-col="9"> Tekst</label>
-    <label><input type="checkbox" data-col="10"> Video</label>
-  </div>
-  <div id="works"></div>
-    <script src="timeline.js"></script>
+  <section class="hero is-primary">
+    <div class="hero-body">
+      <p class="title">Dzieła Johanna Sebastiana Bacha</p>
+      <p class="subtitle">Oś czasu życia Johanna Sebastiana Bacha</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div id="timeline" class="mb-5"></div>
+
+      <div class="columns is-multiline" id="visualizations">
+        <div class="column is-half">
+          <div id="map"></div>
+        </div>
+        <div class="column is-half">
+          <svg id="chart" width="600" height="600"></svg>
+        </div>
+      </div>
+
+      <div class="box" id="filters">
+        <div class="field is-grouped is-grouped-multiline">
+          <div class="control">
+            <div class="select">
+              <select id="city-filter">
+                <option value="">Wszystkie</option>
+              </select>
+            </div>
+          </div>
+          <div class="control">
+            <input class="input" type="number" id="date-from" placeholder="Data od">
+          </div>
+          <div class="control">
+            <input class="input" type="number" id="date-to" placeholder="Data do">
+          </div>
+        </div>
+      </div>
+
+      <div class="box" id="column-toggles">
+        Pokaż kolumny:
+        <label class="checkbox"><input type="checkbox" data-col="1"> BC</label>
+        <label class="checkbox"><input type="checkbox" data-col="3"> Tonacja</label>
+        <label class="checkbox"><input type="checkbox" data-col="4"> Data</label>
+        <label class="checkbox"><input type="checkbox" data-col="5"> Miasto</label>
+        <label class="checkbox"><input type="checkbox" data-col="6"> Gatunek</label>
+        <label class="checkbox"><input type="checkbox" data-col="7"> Obsada</label>
+        <label class="checkbox"><input type="checkbox" data-col="8"> Uwagi</label>
+        <label class="checkbox"><input type="checkbox" data-col="9"> Tekst</label>
+        <label class="checkbox"><input type="checkbox" data-col="10"> Video</label>
+      </div>
+
+      <div id="works"></div>
+    </div>
+  </section>
+
+  <script src="timeline.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="main.js"></script>
   <script type="module" src="chart.js"></script>
