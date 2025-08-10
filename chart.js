@@ -121,7 +121,7 @@ Promise.all([
       .attr('text-anchor', 'middle')
       .style('user-select', 'none')
       .selectAll('text')
-      .data(root.descendants().slice(1))
+      .data(root.descendants().slice(1).filter(d => d.children))
       .join('text')
         .attr('dy', '0.35em');
 
