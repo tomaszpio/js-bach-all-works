@@ -123,7 +123,7 @@ Promise.all([
       .attr('text-anchor', 'middle')
       .style('user-select', 'none')
       .selectAll('text')
-      .data(root.descendants().slice(1).filter(d => d.children))
+      .data(root.descendants().slice(1))
       .join('text')
         .attr('dy', '0.35em');
 
@@ -187,7 +187,7 @@ Promise.all([
   }
 
   function labelVisible(d) {
-    return d.children && d.y1 <= 3 && d.y0 >= 1 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03;
+    return d.y1 <= 3 && d.y0 >= 1 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03;
   }
 
   function labelTransform(d) {
