@@ -29,7 +29,7 @@ Promise.all([
 
   function tooltipText(d) {
     if (d.children) {
-      const lines = [nodePath(d)];
+      const lines = [d.data.name];
       d.leaves().forEach(leaf => {
         const title = getTitle(leaf.data.name);
         lines.push(`${leaf.data.name}${title ? ' – ' + title : ''}`);
@@ -87,6 +87,18 @@ Promise.all([
   path.append('title')
       .text(d => tooltipText(d));
 
+  const label = g.append('g')
+      .attr('pointer-events', 'none')
+      .attr('text-anchor', 'middle')
+      .style('user-select', 'none')
+      .selectAll('text')
+      .data(root.descendants().slice(1))
+      .join('text')
+        .attr('dy', '0.35em')
+        .attr('fill-opacity', d => +labelVisible(d.current))
+        .attr('transform', d => labelTransform(d.current))
+        .text(d => d.data.name);
+
   path.filter(d => d.children)
       .style('cursor', 'pointer')
       .on('click', clicked);
@@ -117,10 +129,26 @@ Promise.all([
         })
       .attr('fill-opacity', d => arcVisible(d.target) ? (d.children ? 0.6 : 0.4) : 0)
       .attrTween('d', d => () => arc(d.current));
+
+    label.filter(function(d) {
+        return +this.getAttribute('fill-opacity') || labelVisible(d.target);
+      }).transition(t)
+        .attr('fill-opacity', d => +labelVisible(d.target))
+        .attrTween('transform', d => () => labelTransform(d.current));
   }
 
   function arcVisible(d) {
     return d.y1 <= radius && d.y0 >= 0 && d.x1 > d.x0;
+  }
+
+  function labelVisible(d) {
+    return d.y1 <= radius && d.y0 >= 0 && d.x1 > d.x0 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03;
+  }
+
+  function labelTransform(d) {
+    const x = (d.x0 + d.x1) / 2 * 180 / Math.PI;
+    const y = (d.y0 + d.y1) / 2;
+    return `rotate(${x - 90}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`;
   }
 
 });
