@@ -119,9 +119,15 @@
       'Ohrdruf': { coords: [50.82, 10.729], years: '1695–1700' },
       'Weimar': { coords: [50.979, 11.329], years: '1708–1717' }
     };
-    const map = L.map('map').setView([51.1657, 10.4515], 6);
+    const bounds = [[47.2701, 5.8663], [55.0581, 15.0419]];
+    const map = L.map('map', {
+      maxBounds: bounds,
+      maxBoundsViscosity: 1.0,
+      minZoom: 6
+    }).fitBounds(bounds);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '\u00a9 OpenStreetMap'
+      attribution: '\u00a9 OpenStreetMap',
+      noWrap: true
     }).addTo(map);
     cities.forEach(city => {
       const info = cityInfo[city];
