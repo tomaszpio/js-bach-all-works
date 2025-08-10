@@ -142,7 +142,7 @@ Promise.all([
   }
 
   function labelVisible(d) {
-    return d.y1 <= radius && d.y0 >= 0 && d.x1 > d.x0 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03;
+    return d.y1 <= radius && d.y0 >= 0 && d.x1 > d.x0 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.002;
   }
 
   function labelTransform(d) {
