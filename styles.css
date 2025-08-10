@@ -39,9 +39,17 @@ tr:nth-child(even) {
 #column-toggles label {
   margin-right: 10px;
 }
+#visualizations {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
 #map {
   height: 400px;
-  margin: 20px 0;
+  flex: 1 1 600px;
 }
 #filters {
   margin: 10px 0;
@@ -56,8 +64,8 @@ tr:nth-child(even) {
   width: 100%;
   height: auto;
   max-width: 600px;
-  display: block;
-  margin: 0 auto;
+  flex: 1 1 600px;
+  margin: 0;
 }
 .tooltip {
   position: absolute;
